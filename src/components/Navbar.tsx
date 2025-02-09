@@ -33,7 +33,7 @@ const Navbar = () => {
             <img 
               src="/lovable-uploads/ff687e93-a99c-438b-a47f-0614bfee860e.png" 
               alt="Sudevi Logo" 
-              className="h-12 w-auto"
+              className="h-20 w-auto" // Increased height from h-12 to h-20
             />
             <span className="text-xs text-primary font-medium mt-1">Taste The Tradition</span>
           </Link>
