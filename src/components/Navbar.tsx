@@ -29,8 +29,13 @@ const Navbar = () => {
     <nav className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${isScrolled ? 'glass-morphism py-4' : 'bg-transparent py-6'}`}>
       <div className="container mx-auto px-4">
         <div className="flex items-center justify-between">
-          <Link to="/" className="text-2xl font-bold text-primary">
-            Sudevi
+          <Link to="/" className="flex flex-col items-center">
+            <img 
+              src="/lovable-uploads/ff687e93-a99c-438b-a47f-0614bfee860e.png" 
+              alt="Sudevi Logo" 
+              className="h-12 w-auto"
+            />
+            <span className="text-xs text-primary font-medium mt-1">Taste The Tradition</span>
           </Link>
 
           {/* Desktop Navigation */}
