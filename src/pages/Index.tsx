@@ -8,37 +8,60 @@ const Index = () => {
   return (
     <>
       {/* Hero Section */}
-      <section className="min-h-screen flex items-center pt-20 bg-gradient-to-b from-red-50 to-white">
+      <section className="min-h-screen flex items-center pt-16 bg-gradient-to-b from-red-50 to-white overflow-hidden">
         <div className="container mx-auto px-4">
-          <div className="text-center space-y-8 fade-in">
-            <h1 className="text-5xl md:text-7xl font-bold text-gray-900 tracking-tight">
-              Taste the Tradition of{' '}
-              <span className="text-primary bg-clip-text bg-gradient-to-r from-red-500 to-red-600 animate-pulse">
-                Odisha
-              </span>
-            </h1>
-            <p className="text-xl md:text-2xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
-              Discover our premium collection of authentic pickles and spices, crafted with care in Balasore
-            </p>
-            <div className="flex flex-col sm:flex-row justify-center gap-4 pt-4">
-              <Button
-                size="lg"
-                className="group hover:scale-105 transition-transform duration-300"
-                asChild
-              >
-                <Link to="/products">
-                  Explore Products
-                  <ArrowRight className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform" />
-                </Link>
-              </Button>
-              <Button
-                variant="outline"
-                size="lg"
-                className="hover:scale-105 transition-transform duration-300"
-                asChild
-              >
-                <Link to="/about">About Us</Link>
-              </Button>
+          <div className="grid md:grid-cols-2 gap-8 items-center">
+            {/* Text Content */}
+            <div className="text-left space-y-6 fade-in">
+              <h1 className="text-5xl md:text-7xl font-bold text-gray-900 tracking-tight">
+                Taste the Tradition of{' '}
+                <span className="text-primary bg-clip-text bg-gradient-to-r from-red-500 to-red-600">
+                  Odisha
+                </span>
+              </h1>
+              <p className="text-xl text-gray-600 leading-relaxed">
+                Discover our premium collection of authentic pickles and spices, crafted with care in Balasore
+              </p>
+              <div className="flex flex-col sm:flex-row gap-4 pt-4">
+                <Button
+                  size="lg"
+                  className="group hover:scale-105 transition-transform duration-300"
+                  asChild
+                >
+                  <Link to="/products">
+                    Explore Products
+                    <ArrowRight className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform" />
+                  </Link>
+                </Button>
+                <Button
+                  variant="outline"
+                  size="lg"
+                  className="hover:scale-105 transition-transform duration-300"
+                  asChild
+                >
+                  <Link to="/about">About Us</Link>
+                </Button>
+              </div>
+            </div>
+
+            {/* Animated Pickle Jar */}
+            <div className="relative h-[500px] fade-in">
+              <div className="absolute inset-0 flex items-center justify-center">
+                <div className="relative w-64 h-80 bg-white/30 rounded-3xl p-4 backdrop-blur-sm border border-white/20 shadow-xl hover:scale-105 transition-transform duration-500 animate-float">
+                  <div className="absolute inset-0 bg-gradient-to-br from-red-500/20 to-transparent rounded-3xl"></div>
+                  <img 
+                    src="/lovable-uploads/ff687e93-a99c-438b-a47f-0614bfee860e.png"
+                    alt="Pickle Jar"
+                    className="w-full h-full object-contain animate-pulse-subtle"
+                  />
+                </div>
+                {/* Decorative Elements */}
+                <div className="absolute -inset-4 pointer-events-none">
+                  <div className="absolute top-1/4 left-1/4 w-4 h-4 bg-red-500/20 rounded-full animate-ping"></div>
+                  <div className="absolute bottom-1/4 right-1/4 w-6 h-6 bg-red-400/20 rounded-full animate-ping delay-150"></div>
+                  <div className="absolute top-1/2 right-1/3 w-3 h-3 bg-red-300/20 rounded-full animate-ping delay-300"></div>
+                </div>
+              </div>
             </div>
           </div>
         </div>

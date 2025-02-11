@@ -26,21 +26,21 @@ const Navbar = () => {
   ];
 
   return (
-    <nav className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${isScrolled ? 'glass-morphism py-4' : 'bg-transparent py-6'}`}>
+    <nav className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${isScrolled ? 'glass-morphism py-2' : 'bg-transparent py-3'}`}>
       <div className="container mx-auto px-4">
         <div className="flex items-center justify-between">
-          <Link to="/" className="flex flex-col items-center">
+          <Link to="/" className="flex items-center">
             <img 
               src="/lovable-uploads/ff687e93-a99c-438b-a47f-0614bfee860e.png" 
               alt="Sudevi Logo" 
-              className="h-20 w-auto"
+              className="h-12 w-auto"
             />
           </Link>
 
           {/* Desktop Navigation */}
-          <div className="hidden md:flex items-center space-x-8">
+          <div className="hidden md:flex items-center space-x-6">
             {navItems.map((item) => (
-              <Link key={item.name} to={item.path} className="nav-item">
+              <Link key={item.name} to={item.path} className="nav-item text-sm">
                 {item.name}
               </Link>
             ))}
