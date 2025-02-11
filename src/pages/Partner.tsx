@@ -1,8 +1,65 @@
 
+import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
+import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
+import { Input } from "@/components/ui/input";
+import { Textarea } from "@/components/ui/textarea";
+import { useToast } from "@/components/ui/use-toast";
+
+interface PartnershipFormProps {
+  type: string;
+  onClose: () => void;
+}
+
+const PartnershipForm = ({ type, onClose }: PartnershipFormProps) => {
+  const { toast } = useToast();
+
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    toast({
+      title: "Application Received",
+      description: `Thank you for your interest in becoming a ${type}. We'll contact you soon.`,
+    });
+    onClose();
+  };
+
+  return (
+    <form onSubmit={handleSubmit} className="space-y-4">
+      <input type="hidden" value={type} />
+      <div>
+        <Input placeholder="Full Name / Business Name" required />
+      </div>
+      <div>
+        <Input type="email" placeholder="Email Address" required />
+      </div>
+      <div>
+        <Input type="tel" placeholder="Phone Number" required />
+      </div>
+      <div>
+        <Input placeholder="City, State" required />
+      </div>
+      <div>
+        <Textarea 
+          placeholder="Tell us about your business experience"
+          className="min-h-[150px]"
+          required
+        />
+      </div>
+      <Button type="submit" className="w-full">Submit Application</Button>
+    </form>
+  );
+};
 
 const Partner = () => {
+  const [open, setOpen] = useState(false);
+  const [partnerType, setPartnerType] = useState("");
+
+  const handlePartnerClick = (type: string) => {
+    setPartnerType(type);
+    setOpen(true);
+  };
+
   return (
     <div className="min-h-screen pt-24 bg-gradient-to-b from-red-50 to-white">
       <div className="container mx-auto px-4">
@@ -21,7 +78,22 @@ const Partner = () => {
             <p className="text-gray-600 mb-6">
               Become a distributor and help us reach more customers in your region
             </p>
-            <Button className="w-full">Apply as Distributor</Button>
+            <Dialog open={open && partnerType === "Distributor"} onOpenChange={(isOpen) => {
+              setOpen(isOpen);
+              if (!isOpen) setPartnerType("");
+            }}>
+              <DialogTrigger asChild>
+                <Button className="w-full" onClick={() => handlePartnerClick("Distributor")}>
+                  Apply as Distributor
+                </Button>
+              </DialogTrigger>
+              <DialogContent className="sm:max-w-[425px]">
+                <DialogHeader>
+                  <DialogTitle>Distributor Application</DialogTitle>
+                </DialogHeader>
+                <PartnershipForm type="Distributor" onClose={() => setOpen(false)} />
+              </DialogContent>
+            </Dialog>
           </Card>
 
           <Card className="p-6 hover:shadow-lg transition-shadow">
@@ -29,7 +101,22 @@ const Partner = () => {
             <p className="text-gray-600 mb-6">
               Stock our products in your store and offer authentic Odia flavors
             </p>
-            <Button className="w-full">Register as Retailer</Button>
+            <Dialog open={open && partnerType === "Retailer"} onOpenChange={(isOpen) => {
+              setOpen(isOpen);
+              if (!isOpen) setPartnerType("");
+            }}>
+              <DialogTrigger asChild>
+                <Button className="w-full" onClick={() => handlePartnerClick("Retailer")}>
+                  Register as Retailer
+                </Button>
+              </DialogTrigger>
+              <DialogContent className="sm:max-w-[425px]">
+                <DialogHeader>
+                  <DialogTitle>Retailer Application</DialogTitle>
+                </DialogHeader>
+                <PartnershipForm type="Retailer" onClose={() => setOpen(false)} />
+              </DialogContent>
+            </Dialog>
           </Card>
 
           <Card className="p-6 hover:shadow-lg transition-shadow">
@@ -37,7 +124,22 @@ const Partner = () => {
             <p className="text-gray-600 mb-6">
               Open a Sudevi exclusive store in your area
             </p>
-            <Button className="w-full">Franchise Enquiry</Button>
+            <Dialog open={open && partnerType === "Franchise"} onOpenChange={(isOpen) => {
+              setOpen(isOpen);
+              if (!isOpen) setPartnerType("");
+            }}>
+              <DialogTrigger asChild>
+                <Button className="w-full" onClick={() => handlePartnerClick("Franchise")}>
+                  Franchise Enquiry
+                </Button>
+              </DialogTrigger>
+              <DialogContent className="sm:max-w-[425px]">
+                <DialogHeader>
+                  <DialogTitle>Franchise Application</DialogTitle>
+                </DialogHeader>
+                <PartnershipForm type="Franchise" onClose={() => setOpen(false)} />
+              </DialogContent>
+            </Dialog>
           </Card>
         </div>
 
