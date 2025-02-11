@@ -39,17 +39,17 @@ const Footer = () => {
           <div className="space-y-4">
             <h4 className="font-semibold text-gray-900">Contact</h4>
             <ul className="space-y-2">
-              <li className="flex items-center space-x-2 text-gray-600">
-                <MapPin size={18} />
-                <span>Balasore, Odisha, India</span>
+              <li className="flex items-start space-x-2 text-gray-600">
+                <MapPin size={18} className="mt-1 flex-shrink-0" />
+                <span>1730/2463/9212, Badakhualanae, Near Balangi College, Sunhat Unit No 30, Balasore, Odisha - 756002</span>
               </li>
               <li className="flex items-center space-x-2 text-gray-600">
                 <Phone size={18} />
-                <span>Contact Support</span>
+                <span>+91 7008172411</span>
               </li>
               <li className="flex items-center space-x-2 text-gray-600">
                 <Mail size={18} />
-                <span>info@sudevi.com</span>
+                <span>sudevifoods@gmail.com</span>
               </li>
             </ul>
           </div>
