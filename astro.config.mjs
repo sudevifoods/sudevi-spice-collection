@@ -3,8 +3,8 @@ import { defineConfig } from 'astro/config';
 import tailwind from '@astrojs/tailwind';
 
 export default defineConfig({
-  site: 'https://yourusername.github.io',  // Replace with your GitHub username
-  base: '/your-repo-name',  // Replace with your repository name
+  site: 'https://sudevifoods.github.io',  // Replace with your GitHub username
+  base: '/sudevi-spice-collection',  // Replace with your repository name
   integrations: [tailwind()],
   output: 'static',
   vite: {
