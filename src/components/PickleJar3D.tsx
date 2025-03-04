@@ -83,10 +83,10 @@ const PickleJar3D = () => {
     console.log("PickleJar3D component mounted");
   }, []);
 
-  // Handle 3D rendering errors - fixed the type mismatch
-  const handleCanvasError = (event: ErrorEvent) => {
+  // Handle 3D rendering errors - with correct type for React event handlers
+  const handleCanvasError = (event: React.SyntheticEvent) => {
     console.error("3D rendering error:", event);
-    setError(new Error(event.message));
+    setError(new Error("Failed to render 3D content"));
   };
 
   if (error) {
