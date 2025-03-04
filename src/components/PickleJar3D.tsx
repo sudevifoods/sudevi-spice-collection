@@ -83,10 +83,10 @@ const PickleJar3D = () => {
     console.log("PickleJar3D component mounted");
   }, []);
 
-  // Handle 3D rendering errors
-  const handleError = (e: Error) => {
-    console.error("3D rendering error:", e);
-    setError(e);
+  // Handle 3D rendering errors - fixed the type mismatch
+  const handleCanvasError = (event: ErrorEvent) => {
+    console.error("3D rendering error:", event);
+    setError(new Error(event.message));
   };
 
   if (error) {
@@ -103,7 +103,7 @@ const PickleJar3D = () => {
           console.log("Canvas created successfully");
           gl.setClearColor(0x000000, 0); // Set clear color with 0 alpha (transparent)
         }}
-        onError={handleError}
+        onError={handleCanvasError}
       >
         <ambientLight intensity={1.5} />
         <spotLight position={[10, 10, 10]} angle={0.15} penumbra={1} intensity={1.5} castShadow />
