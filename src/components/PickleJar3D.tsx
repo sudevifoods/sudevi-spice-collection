@@ -9,14 +9,21 @@ import { Mesh } from 'three';
 const Jar = ({ scrollY }: { scrollY: number }) => {
   const meshRef = useRef<Mesh>(null!);
   
-  // Make sure we're using the correct path to the uploaded label
+  // Load texture directly using Three.js approach
   const labelTexture = useTexture('/lovable-uploads/1986c024-3df3-4866-86bc-70f25fb48ce2.png');
+  
+  // Log texture loading status
+  useEffect(() => {
+    console.log("Label texture loaded:", labelTexture ? "success" : "failed");
+  }, [labelTexture]);
 
   // Rotate jar based on scroll position
   useFrame(() => {
     if (meshRef.current) {
       // Convert scrollY to rotation (adjust multiplier to control sensitivity)
       meshRef.current.rotation.y = scrollY * 0.002;
+      // Add a constant rotation to make it interactive even without scrolling
+      meshRef.current.rotation.y += 0.005;
     }
   });
 
@@ -53,8 +60,16 @@ const Jar = ({ scrollY }: { scrollY: number }) => {
   );
 };
 
+// Fallback component in case 3D rendering fails
+const FallbackDisplay = () => (
+  <div className="flex items-center justify-center h-full w-full bg-gray-100 rounded-lg">
+    <p className="text-xl text-gray-600">Pickle Jar Image</p>
+  </div>
+);
+
 const PickleJar3D = () => {
   const [scrollY, setScrollY] = useState(0);
+  const [error, setError] = useState<Error | null>(null);
 
   // Track scroll position
   useEffect(() => {
@@ -68,18 +83,33 @@ const PickleJar3D = () => {
     console.log("PickleJar3D component mounted");
   }, []);
 
+  // Handle 3D rendering errors
+  const handleError = (e: Error) => {
+    console.error("3D rendering error:", e);
+    setError(e);
+  };
+
+  if (error) {
+    return <FallbackDisplay />;
+  }
+
   return (
-    <div className="h-[500px] w-full">
+    <div className="h-[500px] w-full relative">
       <Canvas 
         camera={{ position: [0, 0, 6], fov: 50 }}
         style={{ background: 'transparent' }}
         shadows
+        onCreated={({ gl }) => {
+          console.log("Canvas created successfully");
+          gl.setClearColor(0x000000, 0); // Set clear color with 0 alpha (transparent)
+        }}
+        onError={handleError}
       >
-        <ambientLight intensity={0.5} />
-        <spotLight position={[10, 10, 10]} angle={0.15} penumbra={1} intensity={1} castShadow />
-        <pointLight position={[-10, -10, -10]} intensity={0.5} />
+        <ambientLight intensity={1.5} />
+        <spotLight position={[10, 10, 10]} angle={0.15} penumbra={1} intensity={1.5} castShadow />
+        <pointLight position={[-10, -10, -10]} intensity={0.8} />
         <Jar scrollY={scrollY} />
-        <OrbitControls enableZoom={false} enablePan={false} />
+        <OrbitControls enableZoom={true} enablePan={false} />
       </Canvas>
     </div>
   );

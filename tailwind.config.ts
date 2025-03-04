@@ -26,6 +26,10 @@ export default {
 			transformStyle: {
 				'preserve-3d': 'preserve-3d',
 			},
+			backfaceVisibility: {
+				'hidden': 'hidden',
+				'visible': 'visible',
+			},
 			colors: {
 				border: 'hsl(var(--border))',
 				input: 'hsl(var(--input))',
