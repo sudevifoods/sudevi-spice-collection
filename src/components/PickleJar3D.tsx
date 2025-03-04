@@ -1,9 +1,9 @@
 
 import { useRef, useState, useEffect } from 'react';
-import { Canvas, useFrame, useLoader } from '@react-three/fiber';
+import { Canvas, useFrame } from '@react-three/fiber';
 import { OrbitControls, useTexture } from '@react-three/drei';
-import { TextureLoader } from 'three/src/loaders/TextureLoader';
-import { Mesh, MathUtils } from 'three';
+import * as THREE from 'three';
+import { Mesh } from 'three';
 
 // The actual 3D jar model
 const Jar = ({ scrollY }: { scrollY: number }) => {
