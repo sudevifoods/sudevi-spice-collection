@@ -3,6 +3,7 @@ import { ArrowRight } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
 import Stats from '@/components/Stats';
+import PickleJar3D from '@/components/PickleJar3D';
 
 const Index = () => {
   return (
@@ -44,24 +45,9 @@ const Index = () => {
               </div>
             </div>
 
-            {/* Animated Pickle Jar */}
+            {/* 3D Pickle Jar replacing the static image */}
             <div className="relative h-[500px] fade-in">
-              <div className="absolute inset-0 flex items-center justify-center">
-                <div className="relative w-64 h-80 bg-white/30 rounded-3xl p-4 backdrop-blur-sm border border-white/20 shadow-xl hover:scale-105 transition-transform duration-500 animate-float">
-                  <div className="absolute inset-0 bg-gradient-to-br from-red-500/20 to-transparent rounded-3xl"></div>
-                  <img 
-                    src="/lovable-uploads/ff687e93-a99c-438b-a47f-0614bfee860e.png"
-                    alt="Pickle Jar"
-                    className="w-full h-full object-contain animate-pulse-subtle"
-                  />
-                </div>
-                {/* Decorative Elements */}
-                <div className="absolute -inset-4 pointer-events-none">
-                  <div className="absolute top-1/4 left-1/4 w-4 h-4 bg-red-500/20 rounded-full animate-ping"></div>
-                  <div className="absolute bottom-1/4 right-1/4 w-6 h-6 bg-red-400/20 rounded-full animate-ping delay-150"></div>
-                  <div className="absolute top-1/2 right-1/3 w-3 h-3 bg-red-300/20 rounded-full animate-ping delay-300"></div>
-                </div>
-              </div>
+              <PickleJar3D />
             </div>
           </div>
         </div>
