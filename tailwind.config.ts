@@ -1,3 +1,4 @@
+
 import type { Config } from "tailwindcss";
 
 export default {
@@ -18,6 +19,13 @@ export default {
 			}
 		},
 		extend: {
+			perspective: {
+				'1000': '1000px',
+				'2000': '2000px',
+			},
+			transformStyle: {
+				'preserve-3d': 'preserve-3d',
+			},
 			colors: {
 				border: 'hsl(var(--border))',
 				input: 'hsl(var(--input))',

@@ -8,6 +8,8 @@ import { Mesh } from 'three';
 // The actual 3D jar model
 const Jar = ({ scrollY }: { scrollY: number }) => {
   const meshRef = useRef<Mesh>(null!);
+  
+  // Make sure we're using the correct path to the uploaded label
   const labelTexture = useTexture('/lovable-uploads/1986c024-3df3-4866-86bc-70f25fb48ce2.png');
 
   // Rotate jar based on scroll position
@@ -61,11 +63,20 @@ const PickleJar3D = () => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
+  // Added console log to track component rendering
+  useEffect(() => {
+    console.log("PickleJar3D component mounted");
+  }, []);
+
   return (
     <div className="h-[500px] w-full">
-      <Canvas camera={{ position: [0, 0, 6], fov: 50 }}>
+      <Canvas 
+        camera={{ position: [0, 0, 6], fov: 50 }}
+        style={{ background: 'transparent' }}
+        shadows
+      >
         <ambientLight intensity={0.5} />
-        <spotLight position={[10, 10, 10]} angle={0.15} penumbra={1} intensity={1} />
+        <spotLight position={[10, 10, 10]} angle={0.15} penumbra={1} intensity={1} castShadow />
         <pointLight position={[-10, -10, -10]} intensity={0.5} />
         <Jar scrollY={scrollY} />
         <OrbitControls enableZoom={false} enablePan={false} />

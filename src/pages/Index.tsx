@@ -45,9 +45,12 @@ const Index = () => {
               </div>
             </div>
 
-            {/* 3D Pickle Jar replacing the static image */}
-            <div className="relative h-[500px] fade-in">
+            {/* 3D Pickle Jar - made more visible and responsive */}
+            <div className="relative h-[500px] w-full fade-in" style={{ zIndex: 10 }}>
               <PickleJar3D />
+              <div className="absolute inset-0 flex items-center justify-center pointer-events-none opacity-0">
+                <p className="text-xl font-medium">Interactive 3D Jar</p>
+              </div>
             </div>
           </div>
         </div>
